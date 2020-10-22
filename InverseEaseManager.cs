@@ -10,7 +10,7 @@ namespace GameUtil
         private const float PIOver2 = PI * 0.5f;
 
         /// <summary>
-        /// Returns the elapsed time between 0 and duration (inclusive) based on a value between 0 and duration (inclusive) and ease selected
+        /// Returns the elapsed time between 0 and duration (inclusive) based on a value between 0 and 1 (inclusive) and ease selected
         /// </summary>
         public static float Evaluate(Ease easeType, float value, float duration)
         {
