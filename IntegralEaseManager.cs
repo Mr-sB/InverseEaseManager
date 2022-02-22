@@ -39,28 +39,28 @@ namespace GameUtil
                 switch (ease)
                 {
                     case Ease.InOutQuad:
-                        value = InOutQuadPrimitiveFunctionLeft(0.5f) - InOutQuadPrimitiveFunctionLeft(min) +
-                            InOutQuadPrimitiveFunctionRight(max) - InOutQuadPrimitiveFunctionRight(0.5f);
+                        value = InOutQuadIntegralFunctionLeft(0.5f) - InOutQuadIntegralFunctionLeft(min) +
+                            InOutQuadIntegralFunctionRight(max) - InOutQuadIntegralFunctionRight(0.5f);
                         break;
                     case Ease.InOutCubic:
-                        value = InOutCubicPrimitiveFunctionLeft(0.5f) - InOutCubicPrimitiveFunctionLeft(min) +
-                            InOutCubicPrimitiveFunctionRight(max) - InOutCubicPrimitiveFunctionRight(0.5f);
+                        value = InOutCubicIntegralFunctionLeft(0.5f) - InOutCubicIntegralFunctionLeft(min) +
+                            InOutCubicIntegralFunctionRight(max) - InOutCubicIntegralFunctionRight(0.5f);
                         break;
                     case Ease.InOutQuart:
-                        value = InOutQuartPrimitiveFunctionLeft(0.5f) - InOutQuartPrimitiveFunctionLeft(min) +
-                            InOutQuartPrimitiveFunctionRight(max) - InOutQuartPrimitiveFunctionRight(0.5f);
+                        value = InOutQuartIntegralFunctionLeft(0.5f) - InOutQuartIntegralFunctionLeft(min) +
+                            InOutQuartIntegralFunctionRight(max) - InOutQuartIntegralFunctionRight(0.5f);
                         break;
                     case Ease.InOutQuint:
-                        value = InOutQuintPrimitiveFunctionLeft(0.5f) - InOutQuintPrimitiveFunctionLeft(min) +
-                            InOutQuintPrimitiveFunctionRight(max) - InOutQuintPrimitiveFunctionRight(0.5f);
+                        value = InOutQuintIntegralFunctionLeft(0.5f) - InOutQuintIntegralFunctionLeft(min) +
+                            InOutQuintIntegralFunctionRight(max) - InOutQuintIntegralFunctionRight(0.5f);
                         break;
                     case Ease.InOutExpo:
-                        value = InOutExpoPrimitiveFunctionLeft(0.5f) - InOutExpoPrimitiveFunctionLeft(min) +
-                            InOutExpoPrimitiveFunctionRight(max) - InOutExpoPrimitiveFunctionRight(0.5f);
+                        value = InOutExpoIntegralFunctionLeft(0.5f) - InOutExpoIntegralFunctionLeft(min) +
+                            InOutExpoIntegralFunctionRight(max) - InOutExpoIntegralFunctionRight(0.5f);
                         break;
                     case Ease.InOutCirc:
-                        value = InOutCircPrimitiveFunctionLeft(0.5f) - InOutCircPrimitiveFunctionLeft(min) +
-                            InOutCircPrimitiveFunctionRight(max) - InOutCircPrimitiveFunctionRight(0.5f);
+                        value = InOutCircIntegralFunctionLeft(0.5f) - InOutCircIntegralFunctionLeft(min) +
+                            InOutCircIntegralFunctionRight(max) - InOutCircIntegralFunctionRight(0.5f);
                         break;
                 }
 
@@ -68,234 +68,234 @@ namespace GameUtil
                     return negative ? -value.Value: value.Value;
             }
             
-            var primitiveFunction = ToPrimitiveFunction(ease);
+            var primitiveFunction = GetIntegralFunction(ease);
             return primitiveFunction(to) - primitiveFunction(from);
         }
         
-        public static Func<float, float> ToPrimitiveFunction(Ease ease)
+        public static Func<float, float> GetIntegralFunction(Ease ease)
         {
             switch (ease)
             {
                 case Ease.Unset:
                 case Ease.Linear:
-                    return LinearPrimitiveFunction;
+                    return LinearIntegralFunction;
                 case Ease.InSine:
-                    return InSinePrimitiveFunction;
+                    return InSineIntegralFunction;
                 case Ease.OutSine:
-                    return OutSinePrimitiveFunction;
+                    return OutSineIntegralFunction;
                 case Ease.InOutSine:
-                    return InOutSinePrimitiveFunction;
+                    return InOutSineIntegralFunction;
                 case Ease.InQuad:
-                    return InQuadPrimitiveFunction;
+                    return InQuadIntegralFunction;
                 case Ease.OutQuad:
-                    return OutQuadPrimitiveFunction;
+                    return OutQuadIntegralFunction;
                 case Ease.InOutQuad:
-                    return InOutQuadPrimitiveFunction;
+                    return InOutQuadIntegralFunction;
                 case Ease.InCubic:
-                    return InCubicPrimitiveFunction;
+                    return InCubicIntegralFunction;
                 case Ease.OutCubic:
-                    return OutCubicPrimitiveFunction;
+                    return OutCubicIntegralFunction;
                 case Ease.InOutCubic:
-                    return InOutCubicPrimitiveFunction;
+                    return InOutCubicIntegralFunction;
                 case Ease.InQuart:
-                    return InQuartPrimitiveFunction;
+                    return InQuartIntegralFunction;
                 case Ease.OutQuart:
-                    return OutQuartPrimitiveFunction;
+                    return OutQuartIntegralFunction;
                 case Ease.InOutQuart:
-                    return InOutQuartPrimitiveFunction;
+                    return InOutQuartIntegralFunction;
                 case Ease.InQuint:
-                    return InQuintPrimitiveFunction;
+                    return InQuintIntegralFunction;
                 case Ease.OutQuint:
-                    return OutQuintPrimitiveFunction;
+                    return OutQuintIntegralFunction;
                 case Ease.InOutQuint:
-                    return InOutQuintPrimitiveFunction;
+                    return InOutQuintIntegralFunction;
                 case Ease.InExpo:
-                    return InExpoPrimitiveFunction;
+                    return InExpoIntegralFunction;
                 case Ease.OutExpo:
-                    return OutExpoPrimitiveFunction;
+                    return OutExpoIntegralFunction;
                 case Ease.InOutExpo:
-                    return InOutExpoPrimitiveFunction;
+                    return InOutExpoIntegralFunction;
                 case Ease.InCirc:
-                    return InCircPrimitiveFunction;
+                    return InCircIntegralFunction;
                 case Ease.OutCirc:
-                    return OutCircPrimitiveFunction;
+                    return OutCircIntegralFunction;
                 case Ease.InOutCirc:
-                    return InOutCircPrimitiveFunction;
+                    return InOutCircIntegralFunction;
                 default:
                     Debug.LogError("Not support " + ease);
                     // OutQuad
-                    return OutQuadPrimitiveFunction;
+                    return OutQuadIntegralFunction;
             }
         }
 
         /// <param name="value">between 0 and 1</param>
-        public static float LinearPrimitiveFunction(float value)
+        public static float LinearIntegralFunction(float value)
         {
             return value * value * 0.5f;
         }
 
-        public static float InSinePrimitiveFunction(float value)
+        public static float InSineIntegralFunction(float value)
         {
             return -TwoOverPI * (float) Math.Sin(value * PIOver2) + value;
         }
 
-        public static float OutSinePrimitiveFunction(float value)
+        public static float OutSineIntegralFunction(float value)
         {
             return -TwoOverPI * (float) Math.Cos(value * PIOver2);
         }
 
-        public static float InOutSinePrimitiveFunction(float value)
+        public static float InOutSineIntegralFunction(float value)
         {
             return -(1f / 2 * PI) * (float) Math.Sin(value * PI) - value;
         }
 
-        public static float InQuadPrimitiveFunction(float value)
+        public static float InQuadIntegralFunction(float value)
         {
             return OneOver3 * value * value * value;
         }
         
-        public static float OutQuadPrimitiveFunction(float value)
+        public static float OutQuadIntegralFunction(float value)
         {
             return value * value - OneOver3 * value * value * value;
         }
 
-        public static float InOutQuadPrimitiveFunction(float value)
+        public static float InOutQuadIntegralFunction(float value)
         {
-            return value < 0.5f ? InOutQuadPrimitiveFunctionLeft(value) : InOutQuadPrimitiveFunctionRight(value);
+            return value < 0.5f ? InOutQuadIntegralFunctionLeft(value) : InOutQuadIntegralFunctionRight(value);
         }
         
-        public static float InOutQuadPrimitiveFunctionLeft(float value)
+        public static float InOutQuadIntegralFunctionLeft(float value)
         {
             return 2 * OneOver3 * value * value * value;
         }
         
-        public static float InOutQuadPrimitiveFunctionRight(float value)
+        public static float InOutQuadIntegralFunctionRight(float value)
         {
             return -2 * OneOver3 * value * value * value + 2 * value * value - value;
         }
 
-        public static float InCubicPrimitiveFunction(float value)
+        public static float InCubicIntegralFunction(float value)
         {
             return 0.25f * (float) Math.Pow(value, 4);
         }
 
-        public static float OutCubicPrimitiveFunction(float value)
+        public static float OutCubicIntegralFunction(float value)
         {
             return 0.25f * (float) Math.Pow(value - 1, 4) + value;
         }
 
-        public static float InOutCubicPrimitiveFunction(float value)
+        public static float InOutCubicIntegralFunction(float value)
         {
-            return value < 0.5f ? InOutCubicPrimitiveFunctionLeft(value) : InOutCubicPrimitiveFunctionRight(value);
+            return value < 0.5f ? InOutCubicIntegralFunctionLeft(value) : InOutCubicIntegralFunctionRight(value);
         }
         
-        public static float InOutCubicPrimitiveFunctionLeft(float value)
+        public static float InOutCubicIntegralFunctionLeft(float value)
         {
             return (float) Math.Pow(value, 4);
         }
         
-        public static float InOutCubicPrimitiveFunctionRight(float value)
+        public static float InOutCubicIntegralFunctionRight(float value)
         {
             return (float) Math.Pow(value - 1, 4) + value;
         }
 
-        public static float InQuartPrimitiveFunction(float value)
+        public static float InQuartIntegralFunction(float value)
         {
             return 0.2f * (float) Math.Pow(value, 5);
         }
 
-        public static float OutQuartPrimitiveFunction(float value)
+        public static float OutQuartIntegralFunction(float value)
         {
             return value - 0.2f * (float) Math.Pow(value - 1, 5);
         }
 
-        public static float InOutQuartPrimitiveFunction(float value)
+        public static float InOutQuartIntegralFunction(float value)
         {
-            return value < 0.5f ? InOutQuartPrimitiveFunctionLeft(value) : InOutQuartPrimitiveFunctionRight(value);
+            return value < 0.5f ? InOutQuartIntegralFunctionLeft(value) : InOutQuartIntegralFunctionRight(value);
         }
         
-        public static float InOutQuartPrimitiveFunctionLeft(float value)
+        public static float InOutQuartIntegralFunctionLeft(float value)
         {
             return 1.6f * (float) Math.Pow(value, 5);
         }
         
-        public static float InOutQuartPrimitiveFunctionRight(float value)
+        public static float InOutQuartIntegralFunctionRight(float value)
         {
             return 1.6f * (float) Math.Pow(value - 1, 5) + value;
         }
 
-        public static float InQuintPrimitiveFunction(float value)
+        public static float InQuintIntegralFunction(float value)
         {
             return OneOver3 * 0.5f * (float) Math.Pow(value, 6);
         }
 
-        public static float OutQuintPrimitiveFunction(float value)
+        public static float OutQuintIntegralFunction(float value)
         {
             return OneOver3 * 0.5f * (float) Math.Pow(value - 1, 6) + value;
         }
 
-        public static float InOutQuintPrimitiveFunction(float value)
+        public static float InOutQuintIntegralFunction(float value)
         {
-            return value < 0.5f ? InOutQuintPrimitiveFunctionLeft(value) : InOutQuintPrimitiveFunctionRight(value);
+            return value < 0.5f ? InOutQuintIntegralFunctionLeft(value) : InOutQuintIntegralFunctionRight(value);
         }
         
-        public static float InOutQuintPrimitiveFunctionLeft(float value)
+        public static float InOutQuintIntegralFunctionLeft(float value)
         {
             return 8 * OneOver3 * (float) Math.Pow(value, 6);
         }
         
-        public static float InOutQuintPrimitiveFunctionRight(float value)
+        public static float InOutQuintIntegralFunctionRight(float value)
         {
             return 8 * OneOver3 * (float) Math.Pow(value - 1, 6) + value;
         }
 
-        public static float InExpoPrimitiveFunction(float value)
+        public static float InExpoIntegralFunction(float value)
         {
             return (float) Math.Pow(2, 10 * (value - 1)) / Tenln2;
         }
 
-        public static float OutExpoPrimitiveFunction(float value)
+        public static float OutExpoIntegralFunction(float value)
         {
             return (float) Math.Pow(2, -10 * value) / Tenln2 + value;
         }
 
-        public static float InOutExpoPrimitiveFunction(float value)
+        public static float InOutExpoIntegralFunction(float value)
         {
-            return value < 0.5 ? InOutExpoPrimitiveFunctionLeft(value) : InOutExpoPrimitiveFunctionRight(value);
+            return value < 0.5 ? InOutExpoIntegralFunctionLeft(value) : InOutExpoIntegralFunctionRight(value);
         }
         
-        public static float InOutExpoPrimitiveFunctionLeft(float value)
+        public static float InOutExpoIntegralFunctionLeft(float value)
         {
             return (float) Math.Pow(2, 10 * (2 * value - 1)) / (4 * Tenln2);
         }
         
-        public static float InOutExpoPrimitiveFunctionRight(float value)
+        public static float InOutExpoIntegralFunctionRight(float value)
         {
             return value - (float) Math.Pow(2, -10 * (2 * value - 1)) / (4 * Tenln2);
         }
 
-        public static float InCircPrimitiveFunction(float value)
+        public static float InCircIntegralFunction(float value)
         {
             return -0.5f * ((float) Math.Asin(value) + (float) Math.Sqrt(1 - value) * value * (float) Math.Sqrt(value + 1) - 2 * value);
         }
 
-        public static float OutCircPrimitiveFunction(float value)
+        public static float OutCircIntegralFunction(float value)
         {
             return 0.5f * ((float) Math.Sqrt(2 - value) * (value - 1) * (float) Math.Sqrt(value) + (float) Math.Asin(value - 1));
         }
 
-        public static float InOutCircPrimitiveFunction(float value)
+        public static float InOutCircIntegralFunction(float value)
         {
-            return value < 0.5 ? InOutCircPrimitiveFunctionLeft(value) : InOutCircPrimitiveFunctionRight(value);
+            return value < 0.5 ? InOutCircIntegralFunctionLeft(value) : InOutCircIntegralFunctionRight(value);
         }
         
-        public static float InOutCircPrimitiveFunctionLeft(float value)
+        public static float InOutCircIntegralFunctionLeft(float value)
         {
             return -0.125f * ((float) Math.Asin(2 * value) + 2 * (float) Math.Sqrt(1 - 2 * value) * value * (float) Math.Sqrt(2 * value + 1) -
                               4 * value);
         }
         
-        public static float InOutCircPrimitiveFunctionRight(float value)
+        public static float InOutCircIntegralFunctionRight(float value)
         {
             return 0.125f * ((float) Math.Asin(2 * value - 2) + (float) Math.Sqrt(1 - 2 * value) * (float) Math.Sqrt(2 * value - 3) * (2 * value - 2) +
                             4 * value);
