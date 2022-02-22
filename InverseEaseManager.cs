@@ -10,6 +10,7 @@ namespace GameUtil
         private const float PIOver2 = PI * 0.5f;
         //10 * Math.Log(2) = 6.9314718
         private const float Tenln2 = 6.9314718f;
+        private const float OneOver3 = 0.3333333333f;
 
         /// <summary>
         /// Returns the elapsed time between 0 and duration (inclusive) based on a value between 0 and 1 (inclusive) and ease selected
@@ -19,6 +20,7 @@ namespace GameUtil
             value = value < 0 ? 0 : value > 1 ? 1 : value;
             switch (easeType)
             {
+                case Ease.Unset:
                 case Ease.Linear:
                     return value * duration;
                 case Ease.InSine:
@@ -36,13 +38,13 @@ namespace GameUtil
                         ? (float) Math.Sqrt(value * 0.5f) * duration
                         : (1 - (float) Math.Sqrt((1 - value) * 0.5f)) * duration;
                 case Ease.InCubic:
-                    return (float) Math.Pow(value, 0.3333333333) * duration;
+                    return (float) Math.Pow(value, OneOver3) * duration;
                 case Ease.OutCubic:
-                    return (1 - (float) Math.Pow(1 - value, 0.3333333333)) * duration;
+                    return (1 - (float) Math.Pow(1 - value, OneOver3)) * duration;
                 case Ease.InOutCubic:
                     return value < 0.5f
-                        ? (float) Math.Pow(2 * value, 0.3333333333) * 0.5f * duration
-                        : (1 - (float) Math.Pow(2 * (1 - value), 0.3333333333) * 0.5f) * duration;
+                        ? (float) Math.Pow(2 * value, OneOver3) * 0.5f * duration
+                        : (1 - (float) Math.Pow(2 * (1 - value), OneOver3) * 0.5f) * duration;
                 case Ease.InQuart:
                     return (float) Math.Pow(value, 0.25) * duration;
                 case Ease.OutQuart:
