@@ -8,7 +8,7 @@ namespace GameUtil
     {
         public const float PI = 3.141593f;
         public const float PIOver2 = PI * 0.5f;
-        public const float TwoOverPI = 2 / PI;
+        public const float OneOverPI = 1 / PI;
         //10 * Math.Log(2) = 6.9314718
         private const float Tenln2 = 6.9314718f;
         private const float OneOver3 = 0.3333333333f;
@@ -136,17 +136,17 @@ namespace GameUtil
 
         public static float InSineIntegralFunction(float value)
         {
-            return -TwoOverPI * (float) Math.Sin(value * PIOver2) + value;
+            return -2 * OneOverPI * (float) Math.Sin(value * PIOver2) + value;
         }
 
         public static float OutSineIntegralFunction(float value)
         {
-            return -TwoOverPI * (float) Math.Cos(value * PIOver2);
+            return -2 * OneOverPI * (float) Math.Cos(value * PIOver2);
         }
 
         public static float InOutSineIntegralFunction(float value)
         {
-            return -(1f / 2 * PI) * (float) Math.Sin(value * PI) - value;
+            return -0.5f * (OneOverPI * (float) Math.Sin(value * PI) - value);
         }
 
         public static float InQuadIntegralFunction(float value)
@@ -291,14 +291,12 @@ namespace GameUtil
         
         public static float InOutCircIntegralFunctionLeft(float value)
         {
-            return -0.125f * ((float) Math.Asin(2 * value) + 2 * (float) Math.Sqrt(1 - 2 * value) * value * (float) Math.Sqrt(2 * value + 1) -
-                              4 * value);
+            return -0.125f * ((float) Math.Asin(2 * value) + 2 * (float) Math.Sqrt(1 - 4 * value * value) * value - 4 * value);
         }
         
         public static float InOutCircIntegralFunctionRight(float value)
         {
-            return 0.125f * ((float) Math.Asin(2 * value - 2) + (float) Math.Sqrt(1 - 2 * value) * (float) Math.Sqrt(2 * value - 3) * (2 * value - 2) +
-                            4 * value);
+            return 0.125f * (2 * (float) Math.Sqrt(-4 * value * value + 8 * value - 3) * (value - 1) + value - (float) Math.Asin(2 - 2 * value));
         }
     }
 }
